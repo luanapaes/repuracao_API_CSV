@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <link rel="icon" type="image/x-icon" href="files/favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/0f251f1c56.js" crossorigin="anonymous"></script>
+    <title>Faça Upload</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="msgSuccess"></div>
+        <h1>Faça upload da sua base de dados</h1>
+        <form id="csv-upload-form" enctype="multipart/form-data" method="POST" action="{%  url 'upload_csv' %}">
+            {% csrf_token %}
+            <input type="file" name="csv_file" accept=".csv">
+            <button type="button" id="submit-csv">Enviar CSV</button>
+        </form>
+
+        <p>Insira um arquivo .csv - ao inserir sua base de dados, os dados serão importados no banco de dados.</p>
+    </div>
+
+    <script>
+        document.getElementById('submit-csv').addEventListener('click', function () {
+            const form = document.getElementById('csv-upload-form');
+            const formData = new FormData(form);
+
+            fetch('{% url "upload_csv" %}', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("ok")
+                })
+                .catch(error => {
+                    // Lidar com erros, por exemplo, exibir uma mensagem de erro.
+                    console.log("fez merda")
+                });
+        });
+
+    </script>
+</body>
+
+</html>
