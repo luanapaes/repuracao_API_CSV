@@ -4,6 +4,6 @@ Este projeto é um sistema que importa um arquivo CSV contendo dados de alunos e
 
 ## comando para executar
 1 - entrar na pasta: cd api_csv
-2 - entrar no ambiente virtual: ambientev/Scripts/activate;
+2 - entrar no ambiente virtual: source ambientev/Scripts/activate;
 3 - entrar na pasta do projecto: cd myproject;
 4 - inicar servidor: python manage.py runserver
