@@ -1,0 +1,421 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Lato&family=Montserrat:wght@400;700&family=Poppins:wght@700&family=Varela+Round&display=swap');
+
+
+body {
+    color: white;
+    height: 100%;
+}
+
+.container {
+    width: auto;
+    position: relative;
+    /* Defina a posição relativa para o contêiner */
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /*espaço entre as div que estarão dentro da nav*/
+    background-color: #fff;
+    height: 95px;
+    position: relative; /*para que o pseudo-elemento se referencie*/
+}
+
+/*Está adicionando uma sombra inferior na div nav*/
+.nav::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px; /* Ajuste a altura da sombra*/
+    background: rgba(0, 0, 0, 0.24);
+    box-shadow: 0px 0px 20px 1px rgb(20, 0, 80);
+}
+
+.logo{
+    height: 100%;
+    margin-left: 5%;
+}
+
+.logo img{
+    height: 100%;
+    transform: scale(1);
+}
+
+.logo img:hover{
+    transform: scale(1.1);/*cresce um pouco a imagem quando o mouse passa por cima*/
+    transition: scale .6s ease;
+}
+
+.buttons{
+    margin-right: 5%;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly; /*espaço entre os botões*/
+}
+
+/*botões de login e cadastro*/
+.btn_navegacao{
+    border: none;
+    width: 40%;
+    height: 50%;
+    font-family: 'Poppins';
+    font-size: 1em;
+    border-radius: 10px;
+    background-color:#1B0064;
+    color: rgb(196, 193, 250);
+}
+
+.btn_navegacao:hover{
+    background-color: transparent;
+    color: #1B0064;
+    font-size: 1.1em;
+    text-decoration: underline;
+    transition: .6s all ease;
+    cursor: pointer;
+}
+
+/*div onde está as div section - toda div adicionada dentro dela irá ficar um baixo da outra, em coluna*/
+.main {
+    display: flex;
+    flex-direction: column;
+    background-color: #1B0064;
+    height: 400px;
+    position: relative;
+    /* Defina a posição relativa para o elemento .main */
+}
+
+.main_flex {
+    display: flex;
+    flex-direction: row; /*está deixando as div uma ao lado da outra - texto e a imagem com o elemento arredondado*/
+}
+
+.info_banner {
+    margin: 7% 0 0 100px;
+    text-align: left;
+    width: 60%;
+}
+
+.title {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.info_banner h2 {
+    width: 310px;
+}
+
+.info_banner p {
+    width: 60%;
+    font-family: 'Lato';
+}
+
+.btn_conheca {
+    margin-top: 10%;
+    margin-left: 40%;
+    font-family: 'Poppins';
+    text-decoration: none;
+    border: none;
+    width: 220px !important;
+    /* Adicione !important para garantir que esta largura seja aplicada */
+    height: 30px !important;
+    /* Adicione !important para garantir que esta altura seja aplicada */
+    border-radius: 10px;
+    background-color: rgb(165, 161, 249);
+    color: #1B0064;
+    display: inline-block;
+    /* Certifique-se de que o elemento a seja exibido como um bloco */
+    text-align: center;
+    /* Alinhe o texto ao centro dentro do botão */
+    line-height: 30px;
+    /* Alinhe verticalmente o texto ao centro */
+}
+
+.btn_conheca:hover {
+    cursor: pointer;
+    background-color: #1B0064;
+    color: rgb(165, 161, 249);
+    transition: .8s all ease;
+}
+
+.main_images {
+    margin-top: 40px;
+    max-width: 40%;
+    /* Tornar a imagem responsiva */
+    height: auto;
+    /* Mantém a proporção da imagem */
+    position: relative;
+
+}
+
+.main_images h2 {
+    text-align: center;
+}
+
+.main_images img {
+    width: 80%;
+    position: relative;
+}
+
+/*elemento arredondado que está por trás da imagem*/
+.rounded-shape {
+    width: 90%;
+    height: 150px;
+    background-color: rgb(165, 161, 249);
+    border-radius: 1% 80% 0 0; /* cria a forma arredondada*/
+    position: absolute;
+    left: 10%;
+}
+
+
+/*div onde está a explicação do que o software é capaz com os ícones*/
+.main_info {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto;
+    color: #1B0064;
+    padding-top: 20px;
+}
+
+.title_info {
+    text-align: center;
+}
+
+.icons {/*está deixando as div uma ao lado da outra - div onde está os icones*/
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.icons div {
+    width: 300px;
+}
+
+.icons div i {
+    font-size: 4em;
+}
+
+.icons div i:hover,
+.icons_user i:hover {
+    color: rgb(165, 161, 249);
+    transition: .4s color ease;
+    font-size: 4.1em;
+}
+
+/*div de apresentação dos gráficos*/
+.main_graficos {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+    background-color: #1B0064;
+    color: #ffffff;
+}
+
+.info_graficos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 95%
+}
+
+.title_flex h2 {
+    margin-top: 20%;
+}
+
+.carrossel-slide {
+    position: relative;
+    margin-top: 4%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.carrossel-slide p {
+    text-align: center;
+}
+
+.carrossel-slide img {
+    width: 100%;
+    max-width: 470px;
+}
+
+.carrossel-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 83%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    color: #1B0064;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity .4s;
+}
+
+.carrossel-slide:hover::before {
+    content: 'Alguma informação';
+    background-color: #f1eff4f9;
+    opacity: 1;
+    /* Quando o mouse passa por cima, torna visível */
+    line-height: 25px;
+    text-align: center;
+    cursor: pointer;
+
+}
+
+/* Conteúdo dos slides */
+.carrossel-slide:nth-child(1)::before {
+    content: attr(data-content);
+    list-style: 12px;
+}
+
+.carrossel-slide:nth-child(2)::before {
+    content: attr(data-content);
+}
+
+.carrossel-slide:nth-child(3)::before {
+    content: attr(data-content);
+}
+
+.carrossel-slide:nth-child(4)::before {
+    content: attr(data-content);
+}
+
+.main_user {
+    margin-top: 3%;
+    margin-bottom: 4%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main_user p {
+    text-align: center;
+    width: 70%;
+    font-size: 1.2em;
+}
+
+.main_user img {
+    width: 70%;
+    margin-top: 2%;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 40px;
+    background-color: #1B0064;
+    height: 90px;
+    box-shadow: 0px 0px 6px rgba(80, 80, 80, 0.992);
+}
+
+footer p {
+    text-align: center;
+}
+
+/* Estilos CSS para deixar a tela responsiva */
+@media (min-width: 535px) and (max-width: 768px) {
+    .btn_conheca {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .buttons{
+        display: flex;
+        flex-wrap: wrap;
+        width: 50%;
+        height: 100%;
+        margin-right: 0;
+        justify-content: space-evenly;
+    }
+
+    .btn_navegacao:hover{
+        font-size: 1em;
+   
+    }
+
+    .btn_navegacao{
+        justify-content: end;
+    }
+    
+    .main_flex {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .info_banner,
+    .main_images {
+        margin: 0 auto;
+    }
+
+    .info_banner h2 {
+        width: 100%;
+        text-align: center;
+        font-size: 1.2em;
+    }
+
+    .info_banner p {
+        margin: 0 auto;
+        text-align: center;
+        width: 100%;
+        position: relative;
+    }
+
+    .btn_conheca {
+        background-color: transparent;
+        color: #fff;
+        text-decoration: underline;
+        position: absolute;
+        top: 321px;
+        right: 120px;
+        z-index: 1;
+    }
+
+    .main_images {
+        max-width: 500px;
+        width: 100%;
+        margin-top: -10px;
+    }
+
+    .main_images h2 {
+        text-align: center;
+    }
+
+    .main_images img {
+        margin-top: -2%;
+        margin-left: 20%;
+        max-width: 60%;
+        position: relative;
+    }
+
+    .rounded-shape {
+        width: 60%;
+        margin-left: 20%;
+        margin-top: -5%;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .main_images img {
+        margin-top: 10%;
+    }
+}

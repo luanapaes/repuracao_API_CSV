@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/API_CSV/myproject/myapp/static/style/usuario.css">
+    <script src="https://kit.fontawesome.com/0f251f1c56.js" crossorigin="anonymous"></script>
+    <title>GoalZone</title>
+</head>
+
+<body>
+    <div class="container">
+        <!--adicionar botão para esse ícone-->
+        <div class="btn_off">
+            <button class="button-off" onclick="sair()">
+                <i class="fas fa-power-off"></i>
+            </button>
+        </div>
+
+        <div class="main">
+            <div class="menu">
+                <div class="info_user">
+                    <div class="row">
+                        <i class="fas fa-user-circle"></i>
+                        <p class="p_style" id="titleName">GoalZone</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main_user">
+                <div class="info">
+                    <h2 class="title zerar">Indicadores gerais</h2>
+                    <p class="p_style zerar">gestão de alunos</p>
+                </div>
+
+                <div class="informacoes">
+                    <div class="info_space">
+                        <div>
+                            <h2 class="title zerar">63</h2>
+                            <p class="p_style zerar">alunos ativos</p>
+                        </div>
+
+                        <div class="icons_space">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+
+                    <div class="info_space">
+                        <div>
+                            <h2 class="title zerar">16</h2>
+                            <p class="p_style zerar">alunos novos</p>
+                        </div>
+
+                        <div class="icons_space">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+
+                    <div class="info_space">
+                        <div>
+                            <h2 class="title zerar">16</h2>
+                            <p class="p_style zerar">alunos desligados</p>
+                        </div>
+
+                        <div class="icons_space">
+                            <i class="fas fa-power-off"></i>
+                        </div>
+                    </div>
+
+                    <div class="info_space">
+                        <div>
+                            <h2 class="title zerar">35%</h2>
+                            <p class="p_style zerar">taxa de faltas</p>
+                        </div>
+
+                        <div class="icons_space">
+                            <i class="fas fa-minus-circle"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="graficos">
+                    <select name="dias-da-semana" id="dias-da-semana">
+                        <optgroup>
+                            <option value="domingo">Domingo</option>
+                            <option value="segunda">Segunda-feira</option>
+                            <option value="terca">Terça-feira</option>
+                            <option value="quarta">Quarta-feira</option>
+                            <option value="quinta">Quinta-feira</option>
+                            <option value="sexta">Sexta-feira</option>
+                            <option value="sabado">Sábado</option>
+                        </optgroup>
+                    </select>
+                    <div class="formatacao">
+                        <div id="grafico1 grafico">
+                            <iframe src="./graficos-dataframe-main/grafico-pizza.html" width="100%" height="400"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-icon" id="chat-icon"></div>
+
+        <div class="chat-container" id="chat-container">
+            <div class="chat-header">
+                <i class="far fa-user-circle"></i>
+                <h2 class="h2-chat"> FitBot</h2>
+                <span class="close-button" id="close-button">&times;</span>
+            </div>
+            <div class="chat-body" id="chat-body">
+                <div class="message received">
+                    <p>Bem vindo(a) ao FitInsights!</p>
+                    <p>Estou aqui para te ajudar e fornecer análises específicas
+                        sobre sua base de dados.
+                    </p>
+                    <p>Como posso ajudar você hoje?</p>
+                </div>
+
+                <div class="chat-footer">
+                    <p>Você pode me fazer as seguintes perguntas:</p>
+                    <button class="question-buttons-container">Me diga as aulas que mais atendemos alunos.</button>
+                    <button class="question-buttons-container">Me diga os dias da semana que mais faltam
+                        alunos.</button>
+                    <button class="question-buttons-container">Me diga qual horário e dia da semana há um fluxo maior de
+                        alunos.</button>
+                    <button class="question-buttons-container">Quero fazer outra pergunta..</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="js/signup.js"></script>
+
+</body>
+
+</html>

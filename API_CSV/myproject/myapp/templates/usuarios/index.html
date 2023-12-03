@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <script src="https://kit.fontawesome.com/0f251f1c56.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/API_CSV/myproject/myapp/static/style/reset.css">
+    <link rel="stylesheet" href="/API_CSV/myproject/myapp/static/style/index.css">
+    <link rel="icon" type="image/x-icon" href="files/favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitInsights</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="nav">
+            <div class="logo">
+                <img src="files/logo escura.png" alt="logo da FitInsights" class="logo">
+            </div>
+            <div class="buttons"><!--botões que levam para a tela de login e para a tela de cadastro-->
+                <button class="btn_navegacao" id="login">Faça Login</button>
+                <button class="btn_navegacao" id="cadastro">Cadastre-se</button>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="main_flex">
+                <div class="info_banner">
+                    <h2 class="title">Otimize a Gestão de Vagas com Previsões Inteligentes</h2>
+                    <p>Revolucionize a Gestão de Vagas nas Suas Aulas com Previsões Inteligentes de Frequência na
+                        FitInsights!</p>
+                    <a class="btn_conheca" href="#solucao">Conheça nossa solução!</a>
+                </div>
+
+                <div class="main_images">
+                    <h2 class="title">FitInsights</h2>
+                    <div class="rounded-shape"></div>
+                    <img src="files/plotlybar2.png" alt="ilustração do gráfico de barra" class="img_um">
+                </div>
+            </div>
+        </div>
+
+        <div class="main_info"><!--div onde está sendo apresentado o que o software é capaz-->
+            <div class="title_info">
+                <h2 class="title">Como funciona?</h2>
+            </div>
+
+            <div class="icons">
+                <div>
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <h3>Faça upload da sua base de dados</h3>
+                    <p>Integre a sua base de dados para ter acesso aos painéis de controle
+                        e previsões inteligentes relacionadas aos horários e presença dos 
+                        alunos.
+                    </p>
+                </div>
+
+                <div>
+                    <i class="fas fa-user-check"></i>
+                    <h3>Conheça seus alunos</h3>
+                    <p>Por meio dos painéis de controle, você terá a oportunidade de obter insights 
+                        valiosos sobre seus alunos, incluindo dados sobre faltas, aulas com alta demanda 
+                        e aquelas que são mais frequentadas, entre outras informações relevantes.
+                    </p>
+                </div>
+
+                <div>
+                    <i class="far fa-clock"></i>
+                    <h3>Monitore o horário das aulas</h3>
+                    <p>Mediante a monitorização das horas das aulas, você poderá otimizar a alocação de vagas, 
+                        disponibilizando as posições dos alunos previstos para faltar. Isso garantirá que suas 
+                        aulas estejam sempre com a capacidade adequada de estudantes.
+                    </p>
+                </div>
+
+                <div>
+                    <i class="fas fa-signal"></i>
+                    <h3>Tenha acesso à dashbords</h3>
+                    <p>Os painéis de controle, gerados a partir de sua base de dados, serão atualizados diariamente, 
+                        proporcionando a oportunidade de manter-se informado sobre o perfil de seus alunos e otimizar 
+                        a alocação de vagas nas aulas.
+                    </p>
+                </div>
+            </div>
+
+            <div class="main_graficos"><!--div responsável por apresentar cada gráfico disponível para o usuário-->
+                <div class="title_flex">
+                    <h2 class="title">Conheça nossos gráficos</h2>
+                </div>
+
+                <div class="info_graficos">
+                    <div class="carrossel-slide" data-content="Os gráficos de barras são usados para representar dados em categorias discretas, mostrando 
+                        a comparação entre diferentes valores ou grupos. Cada categoria é representada por uma barra cuja altura 
+                        indica a magnitude da medida. É amplamente utilizado para visualizar e comparar dados de forma eficaz, 
+                        tornando mais fácil identificar tendências, diferenças e relações entre categorias.">
+                        <img src="files/plotlybar2.png" alt="grafico de linhas">
+                        <p class="p_title size">Gráfico de Barras</p>
+                    </div>
+
+                    <div class="carrossel-slide" data-content="Os gráficos de área são usados para representar dados ao longo do tempo ou em categorias, mostrando 
+                        a magnitude cumulativa das medidas. É semelhante ao gráfico de barras, mas as áreas sob as linhas são preenchidas, 
+                        o que ajuda a visualizar a contribuição relativa de cada categoria ao longo do tempo ou em relação a outras categorias. 
+                        É útil para mostrar tendências e padrões de mudança ao longo do tempo.">
+                        <img src="files/grafico-de-areas.png" alt="grafico de linhas">
+                        <p class="p_title size">Gráfico de Áreas</p>
+                    </div>
+
+                    <div class="carrossel-slide" data-content="Os gráficos de dispersão são usados para mostrar a relação entre duas variáveis e 
+                        identificar padrões, tendências ou correlações nos dados, ajuda a visualizar como as duas variáveis
+                        estão interconectadas e se há uma relação positiva, negativa ou nenhuma relação aparente entre elas. 
+                        É amplamente usado em análises estatísticas e de dados para entender melhor a relação entre variáveis 
+                        e tomar decisões informadas.">
+                        <img src="files/grafico-de-dispersao.jpeg" alt="grafico de linhas">
+                        <p class="p_title size">Gráfico de Dispersão</p>
+                    </div>
+
+                    <div class="carrossel-slide" data-content="Os gráficos de linhas são úteis para identificar padrões e tendências 
+                        nos dados ao longo do tempo. Comparar várias séries temporais para encontrar correlações 
+                        ou diferenças. fazer previsões com base nas tendências observadas. Acompanhar o desempenho 
+                        de métricas-chave ao longo do tempo e omparar o desempenho de diferentes categorias, 
+                        produtos ou locais.">
+                        <img src="files/grafico-de-linhas2.png" alt="grafico de linhas">
+                        <p class="p_title size">Gráfico de Linhas</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main_user">
+                <h2 class="title" id="solucao">Conheça nossa solução</h2>
+
+                <p class="p_title">
+                    O FitInsights é um software inovador para academias que utiliza dados para prever faltas, otimizar
+                    vagas e
+                    identificar horários de pico. Ele oferece insights sobre a demanda das aulas e frequência dos
+                    alunos,
+                    melhorando a gestão e a experiência acadêmica.
+                </p>
+                <img src="files/page-user.png" alt="">
+            </div>
+        </div>
+
+        <footer>
+            <p class="p_title">© 2023 FitInsights. Todos os direitos reservados</p>
+        </footer>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
