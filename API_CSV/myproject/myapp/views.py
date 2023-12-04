@@ -11,6 +11,18 @@ import sys
 sys.path.append(
     "C:/Users/notebook/Documents/API_csv/ambientev/Lib/site-packages")
 
+modelo_treinado = 'API_CSV/myproject/myapp/modelo_treinado.pkl'
+
+
+def usuario_previsao(request):
+    return render(request, 'usuarios/usuario.html')
+
+# ---------- usado para exibir o json da tabela -----------------------------
+class MinhaModelListCreateView(generics.ListCreateAPIView):
+    queryset = FitinsightBase.objects.all()
+    serializer_class = MinhaModelSerializer
+
+# FUNÇÕES
 
 def upload_csv(request):
     if request.method == 'POST':
@@ -32,7 +44,6 @@ def upload_csv(request):
                 )
 
                 instance.save()  # salva um modelo do csv que o usuário inserio
-                obter_dados_da_tabela()
 
             return JsonResponse({'message': 'Dados do CSV foram salvos com sucesso.'})
     else:
@@ -40,14 +51,7 @@ def upload_csv(request):
 
     return render(request, 'usuarios/upload_csv.html', {'form': form})
 
-# ------ pega a tabela ------------------------------------------------------------------------
-
-# def obter_dados_da_tabela():
-#     dados_da_tabela = FitinsightBase.objects.all()
-
-#     return dados_da_tabela
-# dados_tabela = obter_dados_da_tabela() #retona tudo que tem na tabela
-# ----------------------------------------------------------------------------------------------
+# ------ FAZ A CONVERSAO DOS DADOS CATEGORICOS PARA NUMERICOS ------------------------------------
 
 def obter_dados_da_tabela():
     dados_da_tabela = FitinsightBase.objects.all()
@@ -92,18 +96,43 @@ def obter_dados_da_tabela():
 
     return dados_da_tabela
 
-#------------------------------------------------------------------------------------------------------
-# # pega a coluna vazia
-# coluna_attended = FitinsightBase.objects.values_list('attended', flat=True)
-# print(coluna_attended)
+# ---CRIA UM CSV DA TABELA----
+import sqlite3
+import csv
 
-#-------------------------------------------------------------------------------------------
-# previsoes = modelo_ia.predict(attended_coluna) # coloca a coluna gerada em uma variavel
+# Conectar ao banco de dados SQLite
+conn = sqlite3.connect('db.sqlite3')
+cursor = conn.cursor()
+
+# Executar a consulta SQL para obter os dados da tabela
+cursor.execute('SELECT * FROM myapp_fitinsightbase')
+
+# Obter as colunas da tabela
+colunas = [descricao[0] for descricao in cursor.description]
+
+# Obter os dados da tabela
+dados = cursor.fetchall()
+
+# Fechar a conexão com o banco de dados
+conn.close()
+
+# Escrever os dados em um arquivo CSV
+nome_arquivo_csv = 'saida.csv'
+with open(nome_arquivo_csv, 'w', newline='', encoding='utf-8') as arquivo_csv:
+    writer = csv.writer(arquivo_csv)
+    
+    # Escrever o cabeçalho (nomes das colunas)
+    writer.writerow(colunas)
+    
+    # Escrever os dados
+    writer.writerows(dados)
+
+print(f'Tabela exportada para {nome_arquivo_csv}')
+
+# -------------------------------------------------
+import joblib
+modelo_ia = joblib.load('modelo_treinado') #MEU PROBLEMA COMEÇA AQUI
+
 
 #---esse delete apaga o que tem na coluna
 # FitinsightBase.objects.all().delete()
-
-# ---------- usado para exibir o json da tabela -----------------------------
-class MinhaModelListCreateView(generics.ListCreateAPIView):
-    queryset = FitinsightBase.objects.all()
-    serializer_class = MinhaModelSerializer
