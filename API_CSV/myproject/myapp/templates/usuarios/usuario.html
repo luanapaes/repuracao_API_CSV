@@ -139,12 +139,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <script src="js/signup.js"></script>
     <script>
-        const url = 'http://127.0.0.1:8000/api/minhamodel/'
+        const url = 'http://127.0.0.1:8000/api/basecomprevisao/'
         fetch(url)
             .then(res => res.json())
             .then(data => {
                 data.forEach(coluna => {
-                    console.log(coluna)
+                    if(coluna.category == 1){
+                        let category = 'Strength'
+                        console.log('a categoria é:', category)
+                    }
+                    else{
+                        console.log('outra categoria')
+                    }
                 });
 
                 
