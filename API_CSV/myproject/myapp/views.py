@@ -22,6 +22,10 @@ modelo_treinado = 'API_CSV/myproject/myapp/modelo_treinado.pkl'
 def usuario_previsao(request):
     return render(request, 'usuarios/usuario.html')
 
+def pagina_usuario(request):
+    return render(request, 'files/usuario.html')
+
+
 
 # ---------- usado para exibir o json da tabela -----------------------------
 class MinhaModelListCreateView(generics.ListCreateAPIView):
@@ -33,6 +37,8 @@ class BaseComPrecisaoListCreateView(generics.ListCreateAPIView):
     serializer_class = BaseComPrevisaoSerializer
 
 
+def cadastro_usuario(request):
+    return render(request, 'usuarios/signup.html')
 import pandas as pd
 
 # FUNÇÕES

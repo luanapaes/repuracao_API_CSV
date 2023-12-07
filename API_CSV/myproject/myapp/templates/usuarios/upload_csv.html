@@ -1,10 +1,10 @@
-
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="pt">
 
 <head>
-    <link rel="stylesheet" href="/API_CSV/myproject/myapp/static/style/upload.css">
+    <link rel="stylesheet" href="{% static '/style/upload.css' %}" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/0f251f1c56.js" crossorigin="anonymous"></script>
@@ -18,7 +18,7 @@
         <form id="csv-upload-form" enctype="multipart/form-data" method="POST" action="{%  url 'upload_csv' %}">
             {% csrf_token %}
             <input type="file" name="csv_file" accept=".csv">
-            <button type="button" id="submit-csv">Enviar CSV</button>
+            <button type="button" id="submit-csv" class="btn-enviar">Enviar CSV</button>
         </form>
 
         <p>Insira um arquivo .csv - ao inserir sua base de dados, os dados serão importados no banco de dados.</p>
@@ -35,7 +35,7 @@
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log("ok")
+                     window.location.href = "{% url 'usuario' %}";
                 })
                 .catch(error => {
                     // Lidar com erros, por exemplo, exibir uma mensagem de erro.

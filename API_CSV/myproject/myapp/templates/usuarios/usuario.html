@@ -1,10 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/API_CSV/myproject/myapp/static/style/usuario.css">
+    <link rel="stylesheet" href="{% static '/style/usuario.css' %}" />
     <script src="https://kit.fontawesome.com/0f251f1c56.js" crossorigin="anonymous"></script>
     <title>GoalZone</title>
 </head>
@@ -25,6 +27,9 @@
                         <i class="fas fa-user-circle"></i>
                         <p class="p_style" id="titleName">GoalZone</p>
                     </div>
+                    <a href="{% static '/file/data_IA_tratado.csv' %}" download="base_com_previsao.csv">
+                        <button id="download-file">Download do Arquivo</button>
+                    </a>
                 </div>
             </div>
 
@@ -34,68 +39,16 @@
                     <p class="p_style zerar">gestão de alunos</p>
                 </div>
 
-                <div class="informacoes">
-                    <div class="info_space">
-                        <div>
-                            <h2 class="title zerar">63</h2>
-                            <p class="p_style zerar">alunos ativos</p>
-                        </div>
-
-                        <div class="icons_space">
-                            <i class="fas fa-users"></i>
-                        </div>
-                    </div>
-
-                    <div class="info_space">
-                        <div>
-                            <h2 class="title zerar">16</h2>
-                            <p class="p_style zerar">alunos novos</p>
-                        </div>
-
-                        <div class="icons_space">
-                            <i class="fas fa-plus"></i>
-                        </div>
-                    </div>
-
-                    <div class="info_space">
-                        <div>
-                            <h2 class="title zerar">16</h2>
-                            <p class="p_style zerar">alunos desligados</p>
-                        </div>
-
-                        <div class="icons_space">
-                            <i class="fas fa-power-off"></i>
-                        </div>
-                    </div>
-
-                    <div class="info_space">
-                        <div>
-                            <h2 class="title zerar">35%</h2>
-                            <p class="p_style zerar">taxa de faltas</p>
-                        </div>
-
-                        <div class="icons_space">
-                            <i class="fas fa-minus-circle"></i>
-                        </div>
-                    </div>
-                </div>
+              
 
                 <div class="graficos">
-                    <select name="dias-da-semana" id="dias-da-semana">
-                        <optgroup>
-                            <option value="domingo">Domingo</option>
-                            <option value="segunda">Segunda-feira</option>
-                            <option value="terca">Terça-feira</option>
-                            <option value="quarta">Quarta-feira</option>
-                            <option value="quinta">Quinta-feira</option>
-                            <option value="sexta">Sexta-feira</option>
-                            <option value="sabado">Sábado</option>
-                        </optgroup>
-                    </select>
                     <div class="formatacao">
                         <div id="grafico1 grafico">
-                            <iframe src="./graficos-dataframe-main/grafico-pizza.html" width="100%"
-                                height="400"></iframe>
+                            <canvas id="myBarChart" width="400" height="400"></canvas>
+                        </div>
+
+                        <div id="grafico1 grafico">
+                            <canvas id="myPieChart" width="400" height="400"></canvas>
                         </div>
                     </div>
                 </div>
@@ -138,28 +91,119 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <script src="js/signup.js"></script>
+
     <script>
-        const url = 'http://127.0.0.1:8000/api/basecomprevisao/'
-        fetch(url)
-            .then(res => res.json())
+        const urlComPrevisao = 'http://127.0.0.1:8000/api/basecomprevisao/';
+        const urlSemPrevisao = 'http://127.0.0.1:8000/api/minhamodel/'
+
+        fetch(urlSemPrevisao)
+            .then(response => response.json())
             .then(data => {
+
+                // Contagem de categorias
+                const categoriaCount = {};
+
                 data.forEach(coluna => {
-                    if(coluna.category == 1){
-                        let category = 'Strength'
-                        console.log('a categoria é:', category)
-                    }
-                    else{
-                        console.log('outra categoria')
-                    }
+                    categoriaCount[coluna.category] = (categoriaCount[coluna.category] || 0) + 1;
                 });
 
-                
-                // previsoes = modelo_ia.predict(X) // coloca a coluna gerada em uma variavel
-                // Adicionar as previsões ao DataFrame original
-                // data_com_a_previsao = data_limpo //minha base de dados sqlite
-                // data_com_a_previsao['attended'] = previsoes
+                // Separar os dados em arrays de categorias e contagem
+                const categorias = Object.keys(categoriaCount);
+                const contagens = Object.values(categoriaCount);
 
+                // Configurações do gráfico
+                const options = {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                };
+
+                // Obter o contexto do canvas
+                const ctx = document.getElementById('myBarChart').getContext('2d');
+
+                // Criar o gráfico de barras
+                const myBarChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: categorias,
+                        datasets: [{
+                            label: 'Contagem por Categoria',
+                            data: contagens,
+                            backgroundColor: 'rgb(75, 100, 192)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: options
+                });
             })
+            .catch(error => {
+                console.error('Erro ao obter dados do endpoint:', error);
+            });
+
+        fetch(urlComPrevisao)
+            .then(response => response.json())
+            .then(data => {
+
+                // Contagem de attended
+                const attendedCount = {
+                    true: 0,
+                    false: 0
+                };
+
+                data.forEach(coluna => {
+                    attendedCount[coluna.attended] = (attendedCount[coluna.attended] || 0) + 1;
+                });
+
+                // Separar os dados em arrays de labels e contagem
+                const labels = Object.keys(attendedCount);
+                const contagens = Object.values(attendedCount);
+
+                // Gerar cores aleatórias para cada fatia
+                const cores = labels.map(() => getRandomColor());
+
+                // Configurações do gráfico
+                const options = {
+                    responsive: true,
+                    maintainAspectRatio: false
+                };
+
+                // Obter o contexto do canvas
+                const ctx = document.getElementById('myPieChart').getContext('2d');
+
+                // Criar o gráfico de pizza
+                const myPieChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: contagens,
+                            backgroundColor: cores
+                        }]
+                    },
+                    options: options
+                });
+            })
+            .catch(error => {
+                console.error('Erro ao obter dados do endpoint:', error);
+            });
+
+        // Função para gerar cores aleatórias
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
     </script>
 
 </body>
