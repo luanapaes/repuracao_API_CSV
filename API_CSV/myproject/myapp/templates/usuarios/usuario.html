@@ -94,7 +94,8 @@
                     </select>
                     <div class="formatacao">
                         <div id="grafico1 grafico">
-                            <iframe src="./graficos-dataframe-main/grafico-pizza.html" width="100%" height="400"></iframe>
+                            <iframe src="./graficos-dataframe-main/grafico-pizza.html" width="100%"
+                                height="400"></iframe>
                         </div>
                     </div>
                 </div>
@@ -127,12 +128,39 @@
                     <button class="question-buttons-container">Quero fazer outra pergunta..</button>
                 </div>
             </div>
+            <a href="{% url 'usuario' %}">Link</a>
+
         </div>
+    </div>
     </div>
     <script src="js/main.js"></script>
     <script src="js/chat.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <script src="js/signup.js"></script>
+    <script>
+        const url = 'http://127.0.0.1:8000/api/basecomprevisao/'
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                data.forEach(coluna => {
+                    if(coluna.category == 1){
+                        let category = 'Strength'
+                        console.log('a categoria é:', category)
+                    }
+                    else{
+                        console.log('outra categoria')
+                    }
+                });
+
+                
+                // previsoes = modelo_ia.predict(X) // coloca a coluna gerada em uma variavel
+                // Adicionar as previsões ao DataFrame original
+                // data_com_a_previsao = data_limpo //minha base de dados sqlite
+                // data_com_a_previsao['attended'] = previsoes
+
+            })
+    </script>
 
 </body>
 
